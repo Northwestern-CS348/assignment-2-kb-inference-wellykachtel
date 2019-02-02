@@ -142,7 +142,6 @@ class KnowledgeBase(object):
             return
         elif not fact.supported_by:
             # only asserted, not supported
-            print("removing fact")
             for f in fact.supports_facts:
                 actual_fact = self._get_fact(f)
                 for pair in actual_fact.supported_by:
@@ -176,8 +175,7 @@ class KnowledgeBase(object):
                 if pair[1] == rule:
                     actual_rule.supported_by.remove(pair)
                     self.remove_rule(actual_rule)
-
-
+        self.rules.remove(rule)
 
 
 class InferenceEngine(object):
